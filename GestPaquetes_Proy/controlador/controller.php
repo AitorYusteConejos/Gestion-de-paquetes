@@ -1,10 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../modelo/Paquete.php';
-require_once __DIR__ . '/../modelo/Repartidor.php';
-require_once __DIR__ . '/../modelo/SistemaLogistica.php';
-require_once __DIR__ . '/../vista/view.php';
-
 class Controller
 {
     public function __construct(
