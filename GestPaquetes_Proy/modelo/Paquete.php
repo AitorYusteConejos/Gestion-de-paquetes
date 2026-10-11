@@ -22,7 +22,7 @@ class Paquete
             $this->estado = EstadoPaquete::EnRuta;
         } else {
             throw new Exception(
-                "El paquete que intenta asignar no está en estado pendiente"
+                "El paquete que intenta asignar a ruta no está pendiente"
             );
         }
     }
@@ -33,12 +33,16 @@ class Paquete
             $this->estado = EstadoPaquete::Entregado;
         } else {
             throw new Exception(
-                "El paquete que intenta entregar no está en ruta"
+                "El paquete que intenta marcar como entregado no está en ruta"
             );
         }
     }
 
     public function obtenerEstado(): EstadoPaquete
+    {
+        return $this->estado;
+    }
+}
     {
         return $this->estado;
     }
