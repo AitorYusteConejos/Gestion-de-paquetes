@@ -1,6 +1,6 @@
 <?php
 
-class View
+class Vista
 {
     public function mostrarMenu(): void
     {
@@ -15,16 +15,16 @@ class View
     public function mostrarListado(array $repartidores, array $paquetes): void
     {
         echo "\n--- REPARTIDORES ---\n";
-        foreach ($repartidores as $r) {
-            echo "{$r->id} - {$r->nombre}\n";
-            foreach ($r->obtenerPaquetes() as $p) {
-                echo "    {$p->codigo}\n";
+        foreach ($repartidores as $repartidor) {
+            echo $repartidor->idRepartidor . " - " . $repartidor->nombreRepartidor . "\n";
+            foreach ($repartidor->obtenerPaquetes() as $paquete) {
+                echo "    " . $paquete->codigoPaquete . "\n";
             }
         }
 
         echo "\n--- PAQUETES ---\n";
-        foreach ($paquetes as $p) {
-            echo "{$p->codigo} - {$p->direccion} - {$p->obtenerEstado()->value}\n";
+        foreach ($paquetes as $paquete) {
+            echo $paquete->codigoPaquete . " - " . $paquete->direccionDestino . " - " . $paquete->obtenerEstado()->value . "\n";
         }
     }
 }

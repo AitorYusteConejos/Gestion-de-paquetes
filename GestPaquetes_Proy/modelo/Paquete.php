@@ -12,17 +12,17 @@ class Paquete
     private EstadoPaquete $estado = EstadoPaquete::Pendiente;
 
     public function __construct(
-        public readonly string $codigo,
-        public readonly string $direccion,
+        public readonly string $codigoPaquete,
+        public readonly string $direccionDestino,
     ) {}
 
     public function asignarARuta(): void
     {
         if ($this->estado === EstadoPaquete::Pendiente) {
             $this->estado = EstadoPaquete::EnRuta;
-        }else{
+        } else {
             throw new Exception(
-                "El paquete que intenta asignar no esta en estado pendiente"
+                "El paquete que intenta asignar no está en estado pendiente"
             );
         }
     }
@@ -31,9 +31,9 @@ class Paquete
     {
         if ($this->estado === EstadoPaquete::EnRuta) {
             $this->estado = EstadoPaquete::Entregado;
-        }else{
-            throw new exception(
-                "El paquete que intenta entregar no esta en ruta"
+        } else {
+            throw new Exception(
+                "El paquete que intenta entregar no está en ruta"
             );
         }
     }
@@ -42,5 +42,4 @@ class Paquete
     {
         return $this->estado;
     }
-
 }

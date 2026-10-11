@@ -7,8 +7,8 @@ class SistemaLogistica
 
     public function registrarPaquete(Paquete $paquete): void
     {
-        foreach ($this->paquetes as $p) {
-            if ($p->codigo === $paquete->codigo) {
+        foreach ($this->paquetes as $paqueteRegistrado) {
+            if ($paqueteRegistrado->codigoPaquete === $paquete->codigoPaquete) {
                 throw new Exception(
                     "Ya existe un paquete con ese código."
                 );
@@ -19,8 +19,8 @@ class SistemaLogistica
 
     public function registrarRepartidor(Repartidor $repartidor): void
     {
-        foreach ($this->repartidores as $r) {
-            if ($r->id === $repartidor->id) {
+        foreach ($this->repartidores as $repartidorRegistrado) {
+            if ($repartidorRegistrado->idRepartidor === $repartidor->idRepartidor) {
                 throw new Exception(
                     "Ya existe un repartidor con ese ID."
                 );
@@ -29,40 +29,40 @@ class SistemaLogistica
         $this->repartidores[] = $repartidor;
     }
 
-    public function buscarPaquete(string $codigo): Paquete
+    public function buscarPaquete(string $codigoPaquete): Paquete
     {
-        foreach ($this->paquetes as $p) {
-            if ($p->codigo === $codigo) {
-                return $p;
+        foreach ($this->paquetes as $paquete) {
+            if ($paquete->codigoPaquete === $codigoPaquete) {
+                return $paquete;
             }
         }
         throw new Exception(
-            "No existe ningún paquete con el código $codigo."
+            "No existe ningún paquete con el código " . $codigoPaquete . "."
         );
     }
 
-    public function buscarRepartidor(int $id): Repartidor
+    public function buscarRepartidor(int $idRepartidor): Repartidor
     {
-        foreach ($this->repartidores as $r) {
-            if ($r->id === $id) {
-                return $r;
+        foreach ($this->repartidores as $repartidor) {
+            if ($repartidor->idRepartidor === $idRepartidor) {
+                return $repartidor;
             }
         }
         throw new Exception(
-            "No existe ningún repartidor con el ID $id."
+            "No existe ningún repartidor con el ID " . $idRepartidor . "."
         );
     }
 
-    public function asignarPaquete(string $codigo, int $idRepartidor): void
+    public function asignarPaquete(string $codigoPaquete, int $idRepartidor): void
     {
-        $paquete = $this->buscarPaquete($codigo);
+        $paquete = $this->buscarPaquete($codigoPaquete);
         $repartidor = $this->buscarRepartidor($idRepartidor);
         $repartidor->asignarPaquete($paquete);
     }
 
-    public function marcarComoEntregado(string $codigo): void
+    public function marcarComoEntregado(string $codigoPaquete): void
     {
-        $paquete = $this->buscarPaquete($codigo);
+        $paquete = $this->buscarPaquete($codigoPaquete);
         $paquete->marcarComoEntregado();
     }
 
