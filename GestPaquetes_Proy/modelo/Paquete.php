@@ -43,7 +43,3 @@ class Paquete
         return $this->estado;
     }
 }
-    {
-        return $this->estado;
-    }
-}
